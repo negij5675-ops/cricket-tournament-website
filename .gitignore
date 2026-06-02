@@ -1,0 +1,201 @@
+# Git Workflow Guide
+
+## Initial Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/negij5675-ops/cricket-tournament-website.git
+cd cricket-tournament-website
+
+# Set up git config
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
+
+## Branch Naming Convention
+
+```
+feature/feature-name          # New feature
+bugfix/bug-name              # Bug fix
+hotfix/critical-issue        # Critical production fix
+refactor/refactor-name       # Code refactoring
+docs/documentation-update    # Documentation
+```
+
+## Development Workflow
+
+### 1. Create Feature Branch
+
+```bash
+# Update main branch
+git checkout main
+git pull origin main
+
+# Create feature branch
+git checkout -b feature/tournament-management
+```
+
+### 2. Make Changes
+
+```bash
+# Make your changes
+# Edit files...
+
+# Check status
+git status
+
+# Stage changes
+git add .
+# Or add specific files
+git add backend/models/Tournament.js
+
+# Commit with clear message
+git commit -m "feat: add tournament creation functionality"
+```
+
+### 3. Push to Remote
+
+```bash
+git push origin feature/tournament-management
+```
+
+### 4. Create Pull Request
+
+1. Go to GitHub repository
+2. Click "Compare & pull request"
+3. Add description of changes
+4. Request reviewers
+5. Merge after approval
+
+### 5. Update Local Main
+
+```bash
+git checkout main
+git pull origin main
+```
+
+## Commit Message Format
+
+Follow conventional commits:
+
+```
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+### Examples
+
+```
+feat(auth): add JWT authentication
+fix(tournament): resolve date validation issue
+refactor(player): simplify statistics calculation
+docs: update API documentation
+test(match): add match controller tests
+```
+
+### Types
+- **feat**: New feature
+- **fix**: Bug fix
+- **refactor**: Code refactoring
+- **style**: Code style changes
+- **test**: Test additions
+- **docs**: Documentation
+- **chore**: Build/dependency updates
+
+## Useful Git Commands
+
+```bash
+# View commit history
+git log --oneline
+
+# See changes in current branch
+git diff main
+
+# Unstage changes
+git restore --staged filename
+
+# Discard local changes
+git checkout -- filename
+
+# Rename branch
+git branch -m old-name new-name
+
+# Delete branch
+git branch -d branch-name
+git push origin --delete branch-name
+
+# Merge branch
+git merge feature/tournament-management
+
+# Rebase (keep history clean)
+git rebase main
+
+# View remote branches
+git branch -r
+
+# Fetch latest changes
+git fetch origin
+
+# Stash changes (save for later)
+git stash
+git stash pop
+```
+
+## Conflict Resolution
+
+```bash
+# If conflicts occur during merge/rebase
+# 1. Edit conflicted files
+# 2. Mark as resolved
+git add resolved-file.js
+
+# 3. Continue merge/rebase
+git merge --continue
+# or
+git rebase --continue
+```
+
+## .gitignore
+
+Make sure these are in .gitignore:
+
+```
+node_modules/
+.env
+.env.local
+.DS_Store
+*.log
+build/
+dist/
+```
+
+## Good Practices
+
+1. ✅ Make small, focused commits
+2. ✅ Write clear commit messages
+3. ✅ Pull before pushing
+4. ✅ Create feature branches
+5. ✅ Don't commit .env files
+6. ✅ Review code before pushing
+7. ✅ Use pull requests for review
+8. ✅ Keep main branch stable
+
+## Emergency: Undo Recent Commits
+
+```bash
+# Undo last commit (keep changes)
+git reset --soft HEAD~1
+
+# Undo last commit (discard changes)
+git reset --hard HEAD~1
+
+# Revert a published commit
+git revert commit-hash
+```
+
+---
+
+For more Git help: https://git-scm.com/doc
